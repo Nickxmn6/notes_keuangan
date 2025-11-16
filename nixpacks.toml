@@ -1,0 +1,21 @@
+[phases.setup]
+nixPkgs = ['php82', 'php82Extensions.pdo', 'php82Extensions.pdo_mysql', 'php82Extensions.mbstring', 'php82Extensions.xml', 'php82Extensions.curl', 'nodejs']
+
+[phases.install]
+cmds = ['composer install --no-dev --optimize-autoloader', 'npm install', 'npm run build']
+
+[start]
+cmd = 'php artisan optimize && php artisan serve --host=0.0.0.0 --port=$PORT'
+```
+
+#### **c. Update `.gitignore`**
+Pastikan ini ada di `.gitignore`:
+```
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
